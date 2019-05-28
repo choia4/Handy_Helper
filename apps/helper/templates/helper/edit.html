@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>New Trip</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'helper/css/style.css' %}">    
+    </head>
+    <body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="header">
+          Hello, {{first_name}}! Let's edit your job!
+          <a href="/logout" class="logout">Log Out</a>
+        </div>
+        <div.container>
+          <div class = "edit">
+            <form action="/submitedit/{{job.id}}", method="post" id="edit">
+                {% csrf_token %}
+                Title: <input type = "text" name = "title" value="{{job.job}}">
+                Description: <input type = "text" name= "description" value= "{{job.desc}}">
+                Location: <input type = "text" name= "location" value="{{job.location}}">
+            </form>
+            <form action='/loggedin' class="submit">
+                {% csrf_token %}
+                <button type="submit">
+                    Cancel
+                </button>
+            </form>
+            <button type="submit" form ="edit" class="submit">Update</button>
+            </div>
+        </div.container>
+    </body>

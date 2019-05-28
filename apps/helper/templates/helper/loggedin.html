@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Dashboard</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'helper/css/style.css' %}">    
+    </head>
+    <body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="header">
+          Hello {{first_name}}!  
+          <a href="/logout" class="logout">Log Out</a>
+          <form action="/create_new" class="newjob", method="post">
+            {% csrf_token %}
+            <button type="submit" >New job! </button>
+          </form>
+          <hr>
+        </div>
+        <div.container>
+          <div class="top">
+            <h2>
+              Everyone's jobs:
+            </h2>
+            <table border="1">
+              <tr>
+                <th>Job</th>
+                <th>Location</th>
+                <th>Actions</th>
+              </tr>
+              {%for job in jobs %}
+                {{t.user_in_job_id}}
+                <tr>
+                  <td>{{job.job}}</td>
+                  <td>{{job.location}}</td>
+                  <td>
+                    {% if job.user_in_job_id == request.session.user_id %}
+                      <a href="/desc/{{job.id}}">View</a> | 
+                      <a href="/remove/{{job.id}}">Remove</a> | 
+                      <a href="/edit/{{job.id}}">Edit</a> |
+                      <a href="/add/{{job.id}}">Add</a>
+                    {% else %}
+                      <a href="/desc/{{job.id}}">View</a> |
+                      <a href="/add/{{job.id}}">Add</a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+          <div class="bottom">
+            <h2>
+              {{first_name}}'s jobs
+            </h2>
+            <table border="1">
+              <tr>
+                <th>Job</th>
+                <th>Actions</th>
+              </tr>
+                {%for job in your_jobs %}
+                  <tr>
+                    <td>{{job.job}}</td>
+                    <td>
+                      <a href="/desc/{{job.id}}">View</a> | 
+                      <a href="/remove/{{job.id}}">Done</a> | 
+                      <a href="/giveup/{{job.id}}">Give up</a> |
+                    </td>
+                  </tr>
+                {% endfor %}
+            </table>
+          
+          </div>
+        </div.container>
+    </body>

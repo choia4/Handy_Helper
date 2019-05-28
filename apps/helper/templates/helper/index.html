@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Registration</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'helper/css/style.css' %}">    
+    </head>
+    <body>
+        <div class="header">
+            <h1>
+                Welcome! Sign in to manage your jobs!
+            </h1>
+        </div>
+      <div class="container">
+        <div class="left">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+          <h2>
+            Register
+          </h2>
+          <form action="/register", method="post">
+            {% csrf_token %}
+            First Name <input type="text" name="first_name">
+            <br>
+            Last Name <input type="text" name="last_name">
+            <br>
+            Email <input type="text" name="email">
+            <br>
+            Password <input type="password" name="password">
+            <br>
+            Confirm Password <input type="password" name="confirm">
+            <br>
+            <button type="submit">Register</button>
+          </form>
+        </div>
+
+        <div class="right">
+          <h2>
+            Login
+          </h2>
+          <form action="/login", method="post">
+            {% csrf_token %}
+            Email: <input type="text" name="email">
+            <br>
+            Password <input type="password" name="password">
+            <br>   
+            <button type="submit">Login</button>         
+
+          </form>
+
+        </div>
+      </div>
+    </body>

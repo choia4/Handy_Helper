@@ -1,0 +1,60 @@
+.container {
+    width: 970px;
+    height: 500px;
+}
+
+
+.left {
+    border: 3px solid black;
+    width: 200px;
+    height: 350px;
+    vertical-align: top;
+    display: inline-block;
+
+}
+
+
+.right {
+    border: 3px solid black;
+    width: 200px;
+    height: 350px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.logout {
+    margin-left: 500px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.newjob {
+    display: inline-block;
+}
+
+
+.create {
+    border: 5px solid black;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+}
+
+.submit {
+    display: inline-block;
+}
+
+.desc {
+    width: 400px;
+    border: 1px solid black;
+}
+
+.edit {
+    border: 1px solid black;
+    width: 225px;
+    height: 225px;
+}
+
+.checkbox {
+    text-align: right;
+}

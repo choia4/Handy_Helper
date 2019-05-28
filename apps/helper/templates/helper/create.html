@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>New Job</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'helper/css/style.css' %}">    
+    </head>
+    <body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="header">
+        <h2>
+            Hello {{first_name}}! Create a job!
+            <a href="/logout" class="logout">Log Out</a>
+        </h2>
+        </div>
+        <div class="container">
+        <div class="edit">
+            <form action='/create', method='post' id="create">
+                {% csrf_token %}
+                Title: <input type="text" name="title">
+                Description: <input type="text" name="description">
+                Location: <input type="text" name="location">
+                Category: <br>
+                Recreational<input class="checkbox" type="checkbox" name="recreational" value ="0"><br>
+                Educational<input class="checkbox" type="checkbox" name="education" value="1"><br>
+                Imaginary<input class="checkbox" type="checkbox" name="imaginary" value="2"><br>
+                Other: <input type="text" name="other">
+            </form>
+            <form action='/loggedin' class="submit">
+                {% csrf_token %}
+                <button type="submit">
+                    Cancel
+                </button>
+            </form>
+            <button form="create" type="submit" class="submit">
+                Submit
+            </button>
+        </div>   
+        </div>
+    </body>
